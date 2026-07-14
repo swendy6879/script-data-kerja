@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +24,7 @@
 </head>
 <body>
 <div class="container">
-    <h1>ZIATOGEL Siap Melayani 24 Jam<br><small style="font-size: 0.6em; color: #666;">Isi Form</small></h1>
+    <h1>ARTI PERMAINAN ELOTTERY<br><small style="font-size: 0.6em; color: #666;">Isi Form</small></h1>
     <div class="add-data-wrapper">
         <strong style="color:#385723;">➕ Tambah Data Kerja Baru</strong>
         <div class="form-group" style="margin-top:10px;">
@@ -34,13 +33,13 @@
         </div>
         <form id="dataForm" onsubmit="saveNewData(event)">
             <div class="form-group"><label>Judul Bagian:</label><input type="text" id="newTitle" class="input-text" required></div>
-            <div class="form-group"><label>Pilihan Kategori:</label><select id="newCategory" class="input-text" required><option value="form">Isi Form / Info Umum</option><option value="qris">Panduan QRIS</option><option value="scatter">Event Scatter</option></select></div>
+            <div class="form-group"><label>Pilihan Kategori:</label><select id="newCategory" class="input-text" required></select></div>
             <div class="form-group"><label>Isi Teks Data Kerja:</label><textarea id="newContent" class="textarea-text" required></textarea></div>
             <button type="submit" class="btn-submit">Simpan Data Kerja</button>
         </form>
     </div>
     <div class="filter-wrapper">
-        <select id="categoryFilter" class="filter-control" onchange="filterData()"><option value="all">-- Pilih Kategori Semua Data --</option><option value="form">Isi Form / Info Umum</option><option value="qris">Panduan QRIS</option><option value="scatter">Event Scatter</option></select>
+        <select id="categoryFilter" class="filter-control" onchange="filterData()"></select>
         <input type="text" id="searchInput" class="filter-control" placeholder="Cari kata kunci..." onkeyup="filterData()">
     </div>
     <div id="noResultsMessage" class="no-results">Data tidak ditemukan.</div>
@@ -51,6 +50,7 @@
 </div>
 <script>
 document.addEventListener("DOMContentLoaded", function() { renderCategories(); loadSavedData(); });
+
 function addNewCategory() {
     var input = document.getElementById("customCategoryInput"); var name = input.value.trim(); if(name==="") return;
     var val = name.toLowerCase().replace(/[^a-z0-9]/g, "-"); var cats = JSON.parse(localStorage.getItem("userSavedCategories")) || [];
@@ -58,25 +58,45 @@ function addNewCategory() {
     cats.push({ name: name, value: val }); localStorage.setItem("userSavedCategories", JSON.stringify(cats));
     input.value = ""; renderCategories(val);
 }
+
 function renderCategories(selVal = null) {
     var dNew = document.getElementById("newCategory"); var dFilter = document.getElementById("categoryFilter");
     var cNew = selVal || dNew.value; var cFilter = dFilter.value;
-    var html = `<option value="form">Isi Form / Info Umum</option><option value="qris">Panduan QRIS</option><option value="scatter">Event Scatter</option>`;
-    var fHtml = `<option value="all">-- Pilih Kategori Semua Data --</option>` + html;
-    dNew.innerHTML = html; dFilter.innerHTML = fHtml;
-    var cats = JSON.parse(localStorage.getItem("userSavedCategories")) || [];
-    cats.forEach(function(c) {
+    
+    // Gabungkan kategori bawaan asli dengan kategori tambahan buatan user
+    var allCategories = [
+        { name: "Isi Form / Info Umum", value: "form" },
+        { name: "Panduan QRIS", value: "qris" },
+        { name: "Event Scatter", value: "scatter" }
+    ];
+    
+    var savedCategories = JSON.parse(localStorage.getItem("userSavedCategories")) || [];
+    allCategories = allCategories.concat(savedCategories);
+    
+    // Fitur Utama: Urutkan array kategori berdasarkan abjad (A-Z) dari nama kategori
+    allCategories.sort(function(a, b) {
+        return a.name.localeCompare(b.name);
+    });
+    
+    // Kosongkan dan masukkan data yang sudah diurutkan dari A-Z ke menu pilihan
+    dNew.innerHTML = "";
+    dFilter.innerHTML = `<option value="all">-- Pilih Kategori Semua Data --</option>`;
+    
+    allCategories.forEach(function(c) {
         var o1 = document.createElement("option"); o1.value = c.value; o1.textContent = c.name; dNew.appendChild(o1);
         var o2 = document.createElement("option"); o2.value = c.value; o2.textContent = c.name; dFilter.appendChild(o2);
     });
+    
     dNew.value = cNew; dFilter.value = cFilter;
 }
+
 function saveNewData(e) {
     e.preventDefault();
     var d = { id: Date.now(), title: document.getElementById("newTitle").value, category: document.getElementById("newCategory").value, content: document.getElementById("newContent").value };
     var cur = JSON.parse(localStorage.getItem("userSavedData")) || []; cur.push(d); localStorage.setItem("userSavedData", JSON.stringify(cur));
     document.getElementById("dataForm").reset(); loadSavedData();
 }
+
 function loadSavedData() {
     var c = document.getElementById("dynamicDataContainer"); c.innerHTML = "";
     var cur = JSON.parse(localStorage.getItem("userSavedData")) || [];
@@ -85,7 +105,9 @@ function loadSavedData() {
     });
     filterData();
 }
+
 function deleteData(id) { if(confirm("Hapus data ini?")) { var cur = JSON.parse(localStorage.getItem("userSavedData")) || []; localStorage.setItem("userSavedData", JSON.stringify(cur.filter(i => i.id !== id))); loadSavedData(); } }
+
 function filterData() {
     var cat = document.getElementById("categoryFilter").value; var q = document.getElementById("searchInput").value.toLowerCase();
     var blocks = document.getElementsByClassName("data-block"); var count = 0;
