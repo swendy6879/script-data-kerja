@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Deposit & Claim Scatter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #0056b3;
+            text-align: center;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 10px;
+        }
+        .section-title {
+            background-color: #000;
+            color: #fff;
+            padding: 8px 12px;
+            font-weight: bold;
+            margin-top: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content-box {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-top: none;
+            background-color: #fafafa;
+        }
+        ol, ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .note {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin-top: 15px;
+            font-size: 0.95em;
+        }
+        .form-section {
+            background-color: #f1f3f5;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+        a {
+            color: #0056b3;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>ARTI PERMAINAN ELOTTERY<br><small style="font-size: 0.6em; color: #666;">Isi Form</small></h1>
+    
+    <div class="content-box">
+        <p>Silahkan Login akun (xxx) ke dalam situs kami , pilih menu deposit dan silakan isi form deposit sesuai dengan nominal yang dikirimkan sesuai bukti transfer ya bosku</p>
+        <p>Mohon maaf bosku, kami tidak dapat melakukan pengecekan deposit anda yang belum diproses tersebut apabila anda tidak melampirkan bukti transfer ya bosku</p>
+    </div>
+
+    <!-- SEKSI QRIS -->
+    <div class="section-title">QRIS</div>
+    <div class="content-box">
+        <p><strong>Cara Melakukan Deposit QRIS Otomatis:</strong></p>
+        <ol>
+            <li>Silakan melakukan login terlebih dahulu pada akun anda</li>
+            <li>Pilih menu deposit ( tujuan deposit QRIS )</li>
+            <li>Masukan nominal deposit yang ingin anda kirimkan lalu tekan GENERATE QR</li>
+            <li>Setelah muncul barcode silakan di scan / di download</li>
+            <li>Buka bank / e-wallet yang anda gunakan lalu pilih pengiriman melalui scan barcode yang sudah tersedia di layar atau ditempat download kemudian masukan pin transaksi anda lalu dana akan langsung otomatis terkirim ke QRIS ZIATOGEL</li>
+            <li>Jika sudah terkirim silahkan ditunggu 30 detik dana deposit anda akan langsung otomatis masuk kedalam akun anda.</li>
+        </ol>
+        <div class="note">
+            <strong>NB:</strong> Untuk setiap barcode QRIS hanya dapat digunakan untuk 1 kali transaksi saja, apabila anda ingin melakukan deposit kembali maka silahkan refresh terlebih dahulu pada menu deposit anda kemudian silahkan mengulangi dengan cara deposit QRIS sebelumnya untuk mendapatkan kode QRIS terbaru. Terima Kasih
+        </div>
+    </div>
+
+    <!-- SEKSI QRIS KENDALA -->
+    <div class="section-title">QRIS</div>
+    <div class="content-box">
+        <p>Jika tidak muncul menu generate QR pada QRIS, Silahkan clear cache atau menghapus history browser anda demi kenyamanan dan kelancaran anda saat melakukan transaksi deposit QRIS, jika kendala masih terjadi, kami sarankan anda untuk coba gunakan browser lain atau deposit ke tujuan bank yang sedang normal ya bosku</p>
+        <p>Terima kasih</p>
+    </div>
+
+    <!-- SEKSI SCATTER -->
+    <div class="section-title">SCATTER</div>
+    <div class="content-box">
+        <p>Untuk perihal Claim scatter pada EVENT SCATTER MAHJONG WAYS 1 & 2 pada Provider PGSoft minimal dengan Betting Rp 1,600 ya bosku</p>
+        
+        <div class="form-section">
+            <p><strong>Silahkan lengkapi Syarat untuk Klaim Bonus Scatter:</strong></p>
+            <p>User ID : <br>Kode Tiket : </p>
+        </div>
+
+        <p><strong>Dibantu dengan Lampiran Screenshot yang di perlukan sebagai berikut:</strong></p>
+        <ul>
+            <li>Screenshot ketika dapat SCATTER &gt;&gt; <a href="https://prnt.sc" target="_blank">https://prnt.sc</a></li>
+            <li>Screenshot Kemenangan akhir &gt;&gt; <a href="https://prnt.sc" target="_blank">https://prnt.sc</a></li>
+            <li>Screenshot history Kemenangan &gt;&gt; <a href="https://prnt.sc" target="_blank">https://prnt.sc</a> (Screenshot history Kemenangan yang dilampirkan harus sesuai dengan Kode Tiket)</li>
+        </ul>
+
+        <div class="note">
+            <strong>NB:</strong> Kode Tiket tersedia pada menu Riwayat permainan &gt;&gt; <a href="https://prnt.sc" target="_blank">https://prnt.sc</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
