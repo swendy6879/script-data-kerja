@@ -273,3 +273,136 @@
 
     <div class="data-block" data-category="qris">
         <div class="section-title">QRIS - Solusi Kendala</div>
+Jika tidak muncul menu generate QR pada QRIS, Silahkan clear cache atau menghapus history browser anda demi kenyamanan dan kelancaran anda saat melakukan transaksi deposit QRIS, jika kendala masih terjadi, kami sarankan anda untuk coba gunakan browser lain atau deposit ke tujuan bank yang sedang normal ya bosku
+Terima kasih
+
+
+SCATTER - Panduan Claim Event
+
+Untuk perihal Claim scatter pada EVENT SCATTER MAHJONG WAYS 1 & 2 pada Provider PGSoft minimal dengan Betting Rp 1,600 ya bosku
+
+Silahkan lengkapi Syarat untuk Klaim Bonus Scatter:
+User ID :
+Kode Tiket :
+Dibantu dengan Lampiran Screenshot yang di perlukan sebagai berikut:
+
+Screenshot ketika dapat SCATTER >> prnt.sc
+Screenshot Kemenangan akhir >> prnt.sc
+Screenshot history Kemenangan >> prnt.sc (Screenshot history Kemenangan yang dilampirkan harus sesuai dengan Kode Tiket)
+
+NB: Kode Tiket tersedia pada menu Riwayat permainan >> prnt.sc
+
+
+
+// Load data dan kategori saat halaman dimuat
+document.addEventListener("DOMContentLoaded", function() {
+renderCategories();
+loadSavedData();
+});
+// Fungsi Menambahkan Kategori Kustom Baru ke LocalStorage
+function addNewCategory() {
+var inputElement = document.getElementById("customCategoryInput");
+var categoryName = inputElement.value.trim();
+if (categoryName === "") {
+alert("Nama kategori tidak boleh kosong!");
+return;
+}
+// Format value kecil tanpa spasi untuk ID HTML internal
+var categoryValue = categoryName.toLowerCase().replace(/[^a-z0-9]/g, "-");
+var savedCategories = JSON.parse(localStorage.getItem("userSavedCategories")) || [];
+// Cek jika kategori sudah terdaftar
+var isExist = savedCategories.some(cat => cat.value === categoryValue);
+if (isExist || categoryValue === "form" || categoryValue === "qris" || categoryValue === "scatter") {
+alert("Kategori ini sudah ada!");
+return;
+}
+savedCategories.push({ name: categoryName, value: categoryValue });
+localStorage.setItem("userSavedCategories", JSON.stringify(savedCategories));
+inputElement.value = ""; // Reset form input kategori
+renderCategories(); // Update seluruh pilihan dropdown di layar
+alert("Kategori '" + categoryName + "' berhasil ditambahkan!");
+}
+// Fungsi Memasukkan Daftar Kategori Tersimpan ke Pilihan Dropdown
+function renderCategories() {
+var dropdownNew = document.getElementById("newCategory");
+var dropdownFilter = document.getElementById("categoryFilter");
+// Reset isi dropdown ke pilihan bawaan asli terlebih dahulu
+dropdownNew.innerHTML = <option value="form">Isi Form / Info Umum</option> <option value="qris">Panduan QRIS</option> <option value="scatter">Event Scatter</option>;
+dropdownFilter.innerHTML = <option value="all">-- Pilih Kategori Semua Data --</option> <option value="form">Isi Form / Info Umum</option> <option value="qris">Panduan QRIS</option> <option value="scatter">Event Scatter</option>;
+var savedCategories = JSON.parse(localStorage.getItem("userSavedCategories")) || [];
+// Masukkan kategori tambahan dari localstorage ke dalam kedua dropdown
+savedCategories.forEach(function(cat) {
+var optNew = document.createElement("option");
+optNew.value = cat.value;
+optNew.textContent = cat.name;
+dropdownNew.appendChild(optNew);
+var optFilter = document.createElement("option");
+optFilter.value = cat.value;
+optFilter.textContent = cat.name;
+dropdownFilter.appendChild(optFilter);
+});
+}
+// Fungsi Menyimpan Data Kerja Baru
+function saveNewData(event) {
+event.preventDefault();
+var title = document.getElementById("newTitle").value;
+var category = document.getElementById("newCategory").value;
+var content = document.getElementById("newContent").value;
+var newData = {
+id: Date.now(),
+title: title,
+category: category,
+content: content
+};
+var currentData = JSON.parse(localStorage.getItem("userSavedData")) || [];
+currentData.push(newData);
+localStorage.setItem("userSavedData", JSON.stringify(currentData));
+document.getElementById("dataForm").reset();
+loadSavedData();
+}
+// Fungsi Memuat Data Kerja ke Layar
+function loadSavedData() {
+var container = document.getElementById("dynamicDataContainer");
+container.innerHTML = "";
+var savedData = JSON.parse(localStorage.getItem("userSavedData")) || [];
+savedData.forEach(function(item) {
+var blockHtml = <div class="data-block" data-category="${item.category}" id="block-${item.id}"> <div class="section-title"> <span>${item.title}</span> <button class="btn-delete" onclick="deleteData(${item.id})">Hapus</button> </div> <div class="content-box"> <p style="white-space: pre-line;">${item.content}</p> </div> </div>;
+container.insertAdjacentHTML('beforeend', blockHtml);
+});
+filterData();
+}
+// Fungsi Menghapus Data Kerja
+function deleteData(id) {
+if(confirm("Apakah Anda yakin ingin menghapus data kerja ini?")) {
+var savedData = JSON.parse(localStorage.getItem("userSavedData")) || [];
+var filteredData = savedData.filter(item => item.id !== id);
+localStorage.setItem("userSavedData", JSON.stringify(filteredData));
+loadSavedData();
+}
+}
+// Fungsi Saring Data dan Pencarian Kata Kunci
+function filterData() {
+var selectedCategory = document.getElementById("categoryFilter").value;
+var searchQuery = document.getElementById("searchInput").value.toLowerCase();
+var dataBlocks = document.getElementsByClassName("data-block");
+var visibleCount = 0;
+for (var i = 0; i < dataBlocks.length; i++) {
+var block = dataBlocks[i];
+var blockCategory = block.getAttribute("data-category");
+var blockText = block.innerText.replace("Hapus", "").toLowerCase();
+var matchesCategory = (selectedCategory === "all" || blockCategory === selectedCategory);
+var matchesSearch = blockText.includes(searchQuery);
+if (matchesCategory && matchesSearch) {
+block.style.display = "block";
+visibleCount++;
+} else {
+block.style.display = "none";
+}
+}
+var noResultsMsg = document.getElementById("noResultsMessage");
+if (visibleCount === 0) {
+noResultsMsg.style.display = "block";
+} else {
+noResultsMsg.style.display = "none";
+}
+}
