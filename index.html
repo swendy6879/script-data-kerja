@@ -1,275 +1,101 @@
+<!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panduan Deposit & Claim Scatter</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            background-color: #f9f9f9;
-            color: #333;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #0056b3;
-            text-align: center;
-            border-bottom: 2px solid #0056b3;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-        
-        /* STYLES UNTUK FILTER & PENCARIAN */
-        .filter-wrapper {
-            background-color: #e9ecef;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 25px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        .filter-control {
-            flex: 1;
-            min-width: 200px;
-            padding: 10px;
-            font-size: 14px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        /* STYLES UNTUK FORM PENAMBAHAN DATA */
-        .add-data-wrapper {
-            background-color: #e2f0d9;
-            border: 1px solid #a9d08e;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 25px;
-        }
-        .add-data-title {
-            font-weight: bold;
-            color: #385723;
-            margin-bottom: 10px;
-            display: block;
-        }
-        .form-group {
-            margin-bottom: 10px;
-        }
-        .form-group label {
-            display: block;
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 4px;
-        }
-        .input-text {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        .textarea-text {
-            width: 100%;
-            height: 80px;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            resize: vertical;
-        }
-        .category-add-box {
-            display: flex;
-            gap: 8px;
-            margin-top: 5px;
-        }
-        .btn-add-cat {
-            background-color: #0056b3;
-            color: white;
-            border: none;
-            padding: 0 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 12px;
-        }
-        .btn-add-cat:hover {
-            background-color: #004085;
-        }
-        .btn-submit {
-            background-color: #385723;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .btn-submit:hover {
-            background-color: #283e19;
-        }
-        .btn-delete {
-            background-color: #dc3545;
-            color: white;
-            border: none;
-            padding: 4px 8px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 11px;
-            margin-top: 10px;
-        }
-        .btn-delete:hover {
-            background-color: #bd2130;
-        }
-        
-        /* STYLES UNTUK KONTEN DATA */
-        .data-block {
-            margin-bottom: 25px;
-        }
-        .section-title {
-            background-color: #000;
-            color: #fff;
-            padding: 8px 12px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .content-box {
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-top: none;
-            background-color: #fafafa;
-        }
-        ol, ul {
-            padding-left: 20px;
-        }
-        li {
-            margin-bottom: 8px;
-        }
-        .note {
-            background-color: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 12px;
-            margin-top: 15px;
-            font-size: 0.95em;
-        }
-        .form-section {
-            background-color: #f1f3f5;
-            padding: 15px;
-            border-radius: 4px;
-            margin-top: 15px;
-        }
-        a {
-            color: #0056b3;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .no-results {
-            display: none;
-            text-align: center;
-            color: #dc3545;
-            font-weight: bold;
-            padding: 20px;
-        }
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; background: #f9f9f9; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { color: #0056b3; text-align: center; border-bottom: 2px solid #0056b3; padding-bottom: 10px; }
+        .filter-wrapper { background: #e9ecef; padding: 15px; border-radius: 6px; margin-bottom: 25px; display: flex; gap: 10px; flex-wrap: wrap; }
+        .filter-control { flex: 1; min-width: 200px; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        .add-data-wrapper { background: #e2f0d9; border: 1px solid #a9d08e; padding: 15px; border-radius: 6px; margin-bottom: 25px; }
+        .form-group { margin-bottom: 10px; } .input-text { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .textarea-text { width: 100%; height: 80px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .btn-submit { background: #385723; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .btn-add-cat { background: #0056b3; color: white; border: none; padding: 0 15px; border-radius: 4px; cursor: pointer; }
+        .btn-delete { background: #dc3545; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px; }
+        .data-block { margin-bottom: 25px; }
+        .section-title { background: #000; color: #fff; padding: 8px 12px; font-weight: bold; text-transform: uppercase; display: flex; justify-content: space-between; }
+        .content-box { padding: 15px; border: 1px solid #ddd; border-top: none; background: #fafafa; }
+        .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-top: 15px; }
+        .form-section { background: #f1f3f5; padding: 15px; border-radius: 4px; margin-top: 15px; }
+        .no-results { display: none; text-align: center; color: #dc3545; font-weight: bold; padding: 20px; }
     </style>
 </head>
 <body>
-
 <div class="container">
     <h1>ARTI PERMAINAN ELOTTERY<br><small style="font-size: 0.6em; color: #666;">Isi Form</small></h1>
-    
-    <!-- FITUR INPUT DATA KERJA BARU -->
     <div class="add-data-wrapper">
-        <span class="add-data-title">➕ Tambah Data Kerja Baru</span>
-        
-        <!-- Input Khusus Tambah Kategori Baru -->
-        <div class="form-group" style="background: rgba(0,0,0,0.05); padding: 10px; border-radius: 4px; margin-bottom: 15px;">
-            <label style="color: #2b441b;">Buat Pilihan Kategori Baru:</label>
-            <div class="category-add-box">
-                <input type="text" id="customCategoryInput" class="input-text" placeholder="Contoh: Info Bonus New Member">
-                <button type="button" class="btn-add-cat" onclick="addNewCategory()">Tambah</button>
-            </div>
+        <strong style="color:#385723;">➕ Tambah Data Kerja Baru</strong>
+        <div class="form-group" style="margin-top:10px;">
+            <label>Buat Pilihan Kategori Baru:</label>
+            <div style="display:flex; gap:8px;"><input type="text" id="customCategoryInput" class="input-text" placeholder="Contoh: DEPOSIT"><button type="button" class="btn-add-cat" onclick="addNewCategory()">Tambah</button></div>
         </div>
-
         <form id="dataForm" onsubmit="saveNewData(event)">
-            <div class="form-group">
-                <label>Judul Bagian / Seksi:</label>
-                <input type="text" id="newTitle" class="input-text" placeholder="Contoh: CARA KLAIM SEKAT BARU" required>
-            </div>
-            <div class="form-group">
-                <label>Pilihan Kategori:</label>
-                <select id="newCategory" class="input-text" required>
-                    <!-- Kategori bawaan asli -->
-                    <option value="form">Isi Form / Info Umum</option>
-                    <option value="qris">Panduan QRIS</option>
-                    <option value="scatter">Event Scatter</option>
-                    <!-- Kategori buatan user akan muncul di sini secara otomatis -->
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Isi Kata-Kata / Data Kerja:</label>
-                <textarea id="newContent" class="textarea-text" placeholder="Tuliskan petunjuk teks secara lengkap..." required></textarea>
-            </div>
+            <div class="form-group"><label>Judul Bagian:</label><input type="text" id="newTitle" class="input-text" required></div>
+            <div class="form-group"><label>Pilihan Kategori:</label><select id="newCategory" class="input-text" required><option value="form">Isi Form / Info Umum</option><option value="qris">Panduan QRIS</option><option value="scatter">Event Scatter</option></select></div>
+            <div class="form-group"><label>Isi Teks Data Kerja:</label><textarea id="newContent" class="textarea-text" required></textarea></div>
             <button type="submit" class="btn-submit">Simpan Data Kerja</button>
         </form>
     </div>
-
-    <!-- KOLOM PENCARIAN DAN FILTRASI -->
     <div class="filter-wrapper">
-        <select id="categoryFilter" class="filter-control" onchange="filterData()">
-            <option value="all">-- Pilih Kategori Semua Data --</option>
-            <option value="form">Isi Form / Info Umum</option>
-            <option value="qris">Panduan QRIS</option>
-            <option value="scatter">Event Scatter</option>
-            <!-- Kategori buatan user juga akan masuk ke sini untuk pencarian -->
-        </select>
-        <input type="text" id="searchInput" class="filter-control" placeholder="Cari kata kunci data kerja..." onkeyup="filterData()">
+        <select id="categoryFilter" class="filter-control" onchange="filterData()"><option value="all">-- Pilih Kategori Semua Data --</option><option value="form">Isi Form / Info Umum</option><option value="qris">Panduan QRIS</option><option value="scatter">Event Scatter</option></select>
+        <input type="text" id="searchInput" class="filter-control" placeholder="Cari kata kunci..." onkeyup="filterData()">
     </div>
-
-    <div id="noResultsMessage" class="no-results">Data kerja tidak ditemukan. Coba kata kunci lain!</div>
-
-    <!-- TEMPAT DATA DINAMIS -->
+    <div id="noResultsMessage" class="no-results">Data tidak ditemukan.</div>
     <div id="dynamicDataContainer"></div>
-
-    <!-- DATA ASLI / BAWAAN SCRIPT -->
-    <div class="data-block" data-category="form">
-        <div class="section-title">Isi Form & Info Umum</div>
-        <div class="content-box">
-            <p>Silahkan Login akun (xxx) ke dalam situs kami , pilih menu deposit dan silakan isi form deposit sesuai dengan nominal yang dikirimkan sesuai bukti transfer ya bosku</p>
-            <p>Mohon maaf bosku, kami tidak dapat melakukan pengecekan deposit anda yang belum diproses tersebut apabila anda tidak melampirkan bukti transfer ya bosku</p>
-        </div>
-    </div>
-
-    <div class="data-block" data-category="qris">
-        <div class="section-title">QRIS - Cara Deposit Otomatis</div>
-        <div class="content-box">
-            <p><strong>Cara Melakukan Deposit QRIS Otomatis:</strong></p>
-            <ol>
-                <li>Silakan melakukan login terlebih dahulu pada akun anda</li>
-                <li>Pilih menu deposit ( tujuan deposit QRIS )</li>
-                <li>Masukan nominal deposit yang ingin anda kirimkan lalu tekan GENERATE QR</li>
-                <li>Setelah muncul barcode silakan di scan / di download</li>
-                <li>Buka bank / e-wallet yang anda gunakan lalu pilih pengiriman melalui scan barcode yang sudah tersedia di layar atau ditempat download kemudian masukan pin transaksi anda lalu dana akan langsung otomatis terkirim ke QRIS ZIATOGEL</li>
-                <li>Jika sudah terkirim silahkan ditunggu 30 detik dana deposit anda akan langsung otomatis masuk kedalam akun anda.</li>
-            </ol>
-            <div class="note">
-                <strong>NB:</strong> Untuk setiap barcode QRIS hanya dapat digunakan untuk 1 kali transaksi saja, apabila anda ingin melakukan deposit kembali maka silahkan refresh terlebih dahulu pada menu deposit anda kemudian silahkan mengulangi dengan cara deposit QRIS sebelumnya untuk mendapatkan kode QRIS terbaru. Terima Kasih
-            </div>
-        </div>
-    </div>
-
-    <div class="data-block" data-category="qris">
-        <div class="section-title">QRIS - Solusi Kendala</div>
+    <div class="data-block" data-category="form"><div class="section-title">Isi Form & Info Umum</div><div class="content-box"><p>Silahkan Login akun (xxx) ke dalam situs kami, isi form deposit sesuai bukti transfer.</p></div></div>
+    <div class="data-block" data-category="qris"><div class="section-title">QRIS - Cara Deposit</div><div class="content-box"><ol><li>Login akun</li><li>Pilih menu deposit QRIS</li><li>Masukan nominal & GENERATE QR</li><li>Scan barcode & dana otomatis masuk.</li></ol></div></div>
+    <div class="data-block" data-category="scatter"><div class="section-title">SCATTER - Panduan Claim</div><div class="content-box"><p>Claim scatter Mahjong Ways minimal bet Rp 1,600. Lampirkan screenshot scatter, kemenangan akhir, dan history kemenangan.</p></div></div>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() { renderCategories(); loadSavedData(); });
+function addNewCategory() {
+    var input = document.getElementById("customCategoryInput"); var name = input.value.trim(); if(name==="") return;
+    var val = name.toLowerCase().replace(/[^a-z0-9]/g, "-"); var cats = JSON.parse(localStorage.getItem("userSavedCategories")) || [];
+    if(cats.some(c => c.value === val) || ["form","qris","scatter"].includes(val)) return alert("Kategori sudah ada!");
+    cats.push({ name: name, value: val }); localStorage.setItem("userSavedCategories", JSON.stringify(cats));
+    input.value = ""; renderCategories(val);
+}
+function renderCategories(selVal = null) {
+    var dNew = document.getElementById("newCategory"); var dFilter = document.getElementById("categoryFilter");
+    var cNew = selVal || dNew.value; var cFilter = dFilter.value;
+    var html = `<option value="form">Isi Form / Info Umum</option><option value="qris">Panduan QRIS</option><option value="scatter">Event Scatter</option>`;
+    var fHtml = `<option value="all">-- Pilih Kategori Semua Data --</option>` + html;
+    dNew.innerHTML = html; dFilter.innerHTML = fHtml;
+    var cats = JSON.parse(localStorage.getItem("userSavedCategories")) || [];
+    cats.forEach(function(c) {
+        var o1 = document.createElement("option"); o1.value = c.value; o1.textContent = c.name; dNew.appendChild(o1);
+        var o2 = document.createElement("option"); o2.value = c.value; o2.textContent = c.name; dFilter.appendChild(o2);
+    });
+    dNew.value = cNew; dFilter.value = cFilter;
+}
+function saveNewData(e) {
+    e.preventDefault();
+    var d = { id: Date.now(), title: document.getElementById("newTitle").value, category: document.getElementById("newCategory").value, content: document.getElementById("newContent").value };
+    var cur = JSON.parse(localStorage.getItem("userSavedData")) || []; cur.push(d); localStorage.setItem("userSavedData", JSON.stringify(cur));
+    document.getElementById("dataForm").reset(); loadSavedData();
+}
+function loadSavedData() {
+    var c = document.getElementById("dynamicDataContainer"); c.innerHTML = "";
+    var cur = JSON.parse(localStorage.getItem("userSavedData")) || [];
+    cur.forEach(function(item) {
+        c.insertAdjacentHTML('beforeend', `<div class="data-block" data-category="${item.category}"><div class="section-title"><span>${item.title}</span><button class="btn-delete" onclick="deleteData(${item.id})">Hapus</button></div><div class="content-box"><p style="white-space: pre-line;">${item.content}</p></div></div>`);
+    });
+    filterData();
+}
+function deleteData(id) { if(confirm("Hapus data ini?")) { var cur = JSON.parse(localStorage.getItem("userSavedData")) || []; localStorage.setItem("userSavedData", JSON.stringify(cur.filter(i => i.id !== id))); loadSavedData(); } }
+function filterData() {
+    var cat = document.getElementById("categoryFilter").value; var q = document.getElementById("searchInput").value.toLowerCase();
+    var blocks = document.getElementsByClassName("data-block"); var count = 0;
+    for (var i = 0; i < blocks.length; i++) {
+        var b = blocks[i]; var matchCat = (cat === "all" || b.getAttribute("data-category") === cat);
+        var matchQ = b.innerText.replace("Hapus", "").toLowerCase().includes(q);
+        if (matchCat && matchQ) { b.style.display = "block"; count++; } else { b.style.display = "none"; }
+    }
+    document.getElementById("noResultsMessage").style.display = (count === 0) ? "block" : "none";
+}
+</script>
+</body>
+</html>
