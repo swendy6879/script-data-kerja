@@ -27,7 +27,7 @@
             margin-bottom: 20px;
         }
         
-        /* STYLES UNTUK FITUR PENCARIAN & PILIHAN */
+        /* STYLES UNTUK FILTER & PENCARIAN */
         .filter-wrapper {
             background-color: #e9ecef;
             padding: 15px;
@@ -46,6 +46,71 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
+
+        /* STYLES UNTUK FORM PENAMBAHAN DATA */
+        .add-data-wrapper {
+            background-color: #e2f0d9;
+            border: 1px solid #a9d08e;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+        }
+        .add-data-title {
+            font-weight: bold;
+            color: #385723;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        .input-text {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .textarea-text {
+            width: 100%;
+            height: 80px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+        .btn-submit {
+            background-color: #385723;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-submit:hover {
+            background-color: #283e19;
+        }
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            margin-top: 10px;
+        }
+        .btn-delete:hover {
+            background-color: #bd2130;
+        }
         
         /* STYLES UNTUK KONTEN DATA */
         .data-block {
@@ -58,6 +123,9 @@
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         .content-box {
             padding: 15px;
@@ -105,26 +173,48 @@
 <div class="container">
     <h1>ARTI PERMAINAN ELOTTERY<br><small style="font-size: 0.6em; color: #666;">Isi Form</small></h1>
     
-    <!-- KOLOM PENCARIAN DAN PILIHAN (FILTER) -->
+    <!-- FITUR UNTUK MENAMBAHKAN KATA-KATA BARU -->
+    <div class="add-data-wrapper">
+        <span class="add-data-title">➕ Tambah Data Kerja Baru</span>
+        <form id="dataForm" onsubmit="saveNewData(event)">
+            <div class="form-group">
+                <label>Judul Bagian / Seksi:</label>
+                <input type="text" id="newTitle" class="input-text" placeholder="Contoh: INFO BONUS NEW MEMBER" required>
+            </div>
+            <div class="form-group">
+                <label>Pilihan Kategori:</label>
+                <select id="newCategory" class="input-text" required>
+                    <option value="form">Isi Form / Info Umum</option>
+                    <option value="qris">Panduan QRIS</option>
+                    <option value="scatter">Event Scatter</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Isi Kata-Kata / Data Kerja:</label>
+                <textarea id="newContent" class="textarea-text" placeholder="Tuliskan petunjuk atau isi teks kerja secara lengkap di sini..." required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Simpan Data</button>
+        </form>
+    </div>
+
+    <!-- KOLOM PENCARIAN DAN FILTRASI -->
     <div class="filter-wrapper">
-        <!-- Kolom Pilihan Kategori -->
         <select id="categoryFilter" class="filter-control" onchange="filterData()">
             <option value="all">-- Pilih Kategori Semua Data --</option>
             <option value="form">Isi Form / Info Umum</option>
             <option value="qris">Panduan QRIS</option>
             <option value="scatter">Event Scatter</option>
         </select>
-        
-        <!-- Kolom Pencarian Kata Kunci -->
         <input type="text" id="searchInput" class="filter-control" placeholder="Cari kata kunci data kerja..." onkeyup="filterData()">
     </div>
 
-    <!-- PESAN JIKA DATA TIDAK DITEMUKAN -->
     <div id="noResultsMessage" class="no-results">Data kerja tidak ditemukan. Coba kata kunci lain!</div>
 
-    <!-- SEMUA DATA BLOK YANG BISA DISARING -->
+    <!-- TEMPAT DATA DINAMIS (DATA BARU AKAN MUNCUL DI SINI) -->
+    <div id="dynamicDataContainer"></div>
+
+    <!-- DATA ASLI / BAWAAN SCRIPT -->
     
-    <!-- Blok Umum / Isi Form -->
     <div class="data-block" data-category="form">
         <div class="section-title">Isi Form & Info Umum</div>
         <div class="content-box">
@@ -133,7 +223,6 @@
         </div>
     </div>
 
-    <!-- Blok Panduan QRIS Otomatis -->
     <div class="data-block" data-category="qris">
         <div class="section-title">QRIS - Cara Deposit Otomatis</div>
         <div class="content-box">
@@ -152,7 +241,6 @@
         </div>
     </div>
 
-    <!-- Blok Kendala QRIS -->
     <div class="data-block" data-category="qris">
         <div class="section-title">QRIS - Solusi Kendala</div>
         <div class="content-box">
@@ -161,7 +249,6 @@
         </div>
     </div>
 
-    <!-- Blok Claim Scatter -->
     <div class="data-block" data-category="scatter">
         <div class="section-title">SCATTER - Panduan Claim Event</div>
         <div class="content-box">
@@ -174,59 +261,4 @@
 
             <p><strong>Dibantu dengan Lampiran Screenshot yang di perlukan sebagai berikut:</strong></p>
             <ul>
-                <li>Screenshot ketika dapat SCATTER &gt;&gt; <a href="https://prnt.sc" target="_blank">https://prnt.sc</a></li>
-                <li>Screenshot Kemenangan akhir &gt;&gt; <a href="https://prnt.sc" target="_blank">https://prnt.sc</a></li>
-                <li>Screenshot history Kemenangan &gt;&gt; <a href="https://prnt.sc" target="_blank">https://prnt.sc</a> (Screenshot history Kemenangan yang dilampirkan harus sesuai dengan Kode Tiket)</li>
-            </ul>
-
-            <div class="note">
-                <strong>NB:</strong> Kode Tiket tersedia pada menu Riwayat permainan &gt;&gt; <a href="https://prnt.sc" target="_blank">https://prnt.sc</a>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<!-- SCRIPT JAVASCRIPT UNTUK MENJALANKAN FUNGSI PENCARIAN & PILIHAN -->
-<script>
-function filterData() {
-    // Ambil nilai dari kolom pencarian dan pilihan dropdown
-    var selectedCategory = document.getElementById("categoryFilter").value;
-    var searchQuery = document.getElementById("searchInput").value.toLowerCase();
-    
-    // Ambil semua blok data kerja
-    var dataBlocks = document.getElementsByClassName("data-block");
-    var visibleCount = 0;
-
-    for (var i = 0; i < dataBlocks.length; i++) {
-        var block = dataBlocks[i];
-        var blockCategory = block.getAttribute("data-category");
-        var blockText = block.innerText.toLowerCase();
-
-        // Cek kecocokan kategori dropdown
-        var matchesCategory = (selectedCategory === "all" || blockCategory === selectedCategory);
-        
-        // Cek kecocokan teks pencarian
-        var matchesSearch = blockText.includes(searchQuery);
-
-        // Jika cocok dengan kedua filter, tampilkan blok data. Jika tidak cocok, sembunyikan.
-        if (matchesCategory && matchesSearch) {
-            block.style.display = "block";
-            visibleCount++;
-        } else {
-            block.style.display = "none";
-        }
-    }
-
-    // Tampilkan pesan error jika hasil pencarian kosong sama sekali
-    var noResultsMsg = document.getElementById("noResultsMessage");
-    if (visibleCount === 0) {
-        noResultsMsg.style.display = "block";
-    } else {
-        noResultsMsg.style.display = "none";
-    }
-}
-</script>
-
-</body>
-</html>
+                
