@@ -1,10 +1,31 @@
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panduan Deposit & Claim Scatter</title>
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; background: #0d0807; color: #333; }
-        .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        body { 
+            font-family: Arial, sans-serif; 
+            line-height: 1.6; 
+            margin: 0; 
+            padding: 20px;
+            color: #333; 
+            
+            /* KODE UNTUK MENAMBAHKAN BACKGROUND GAMBAR */
+            background-image: url('https://wallpapercave.com/wp/wp7116724.jpg'); 
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: rgba(255, 255, 255, 0.1); /* Dibuat sedikit transparan agar background terlihat */
+            padding: 20px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2); 
+        }
         h1 { color: #0056b3; text-align: center; border-bottom: 2px solid #0056b3; padding-bottom: 10px; }
         .filter-wrapper { background: #e9ecef; padding: 15px; border-radius: 6px; margin-bottom: 25px; display: flex; gap: 10px; flex-wrap: wrap; }
         .filter-control { flex: 1; min-width: 200px; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
@@ -62,31 +83,19 @@ function addNewCategory() {
 function renderCategories(selVal = null) {
     var dNew = document.getElementById("newCategory"); var dFilter = document.getElementById("categoryFilter");
     var cNew = selVal || dNew.value; var cFilter = dFilter.value;
-    
-    // Gabungkan kategori bawaan asli dengan kategori tambahan buatan user
     var allCategories = [
         { name: "Isi Form / Info Umum", value: "form" },
         { name: "Panduan QRIS", value: "qris" },
         { name: "Event Scatter", value: "scatter" }
     ];
-    
     var savedCategories = JSON.parse(localStorage.getItem("userSavedCategories")) || [];
     allCategories = allCategories.concat(savedCategories);
-    
-    // Fitur Utama: Urutkan array kategori berdasarkan abjad (A-Z) dari nama kategori
-    allCategories.sort(function(a, b) {
-        return a.name.localeCompare(b.name);
-    });
-    
-    // Kosongkan dan masukkan data yang sudah diurutkan dari A-Z ke menu pilihan
-    dNew.innerHTML = "";
-    dFilter.innerHTML = `<option value="all">-- Pilih Kategori Semua Data --</option>`;
-    
+    allCategories.sort(function(a, b) { return a.name.localeCompare(b.name); });
+    dNew.innerHTML = ""; dFilter.innerHTML = `<option value="all">-- Pilih Kategori Semua Data --</option>`;
     allCategories.forEach(function(c) {
         var o1 = document.createElement("option"); o1.value = c.value; o1.textContent = c.name; dNew.appendChild(o1);
         var o2 = document.createElement("option"); o2.value = c.value; o2.textContent = c.name; dFilter.appendChild(o2);
     });
-    
     dNew.value = cNew; dFilter.value = cFilter;
 }
 
