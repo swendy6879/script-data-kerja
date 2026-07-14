@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Penyimpanan Data Kerja & Template Respon</title>
-    <!-- Tailwind CSS untuk Desain Premium Gelap & Emas -->
-    <script src="https://jsdelivr.net"></script>
+    <!-- Framework CSS untuk Desain Premium Gelap & Emas -->
+    <script src="https://tailwindcss.com"></script>
     <style>
         .gold-border { border-color: #d4af37; }
         .gold-text { color: #f39c12; }
@@ -18,7 +18,7 @@
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
             <h1 class="text-xl font-bold tracking-wider gold-text uppercase">📂 DATA KERJA DASHBOARD</h1>
             <div class="flex gap-2 w-full sm:w-auto">
-                <input type="text" id="searchBar" placeholder="Cari kategori atau teks kerja..." class="w-full sm:w-80 px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-md focus:outline-none focus:border-yellow-500 text-sm">
+                <input type="text" id="searchBar" placeholder="Cari kategori atau teks kerja..." class="w-full sm:w-80 px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-md focus:outline-none focus:border-yellow-500 text-sm text-white">
             </div>
         </div>
     </header>
@@ -70,7 +70,7 @@
                         </td>
                     </tr>
 
-                    <!-- Baris 4: Spaceman (Warna Khusus) -->
+                    <!-- Baris 4: Spaceman -->
                     <tr class="bg-zinc-950/60 hover:bg-zinc-800/40 transition-colors border-l-4 border-yellow-500">
                         <td class="p-4 align-top font-black text-yellow-400 tracking-wide bg-black/40 break-words">SPACEMAN</td>
                         <td class="p-4 align-top">
@@ -87,9 +87,8 @@
         </div>
     </main>
 
-    <!-- Fungsi Logika Interaktif JavaScript -->
+    <!-- Logika Interaktif JavaScript -->
     <script>
-        // Fungsi menyalin teks ke Papan Klip secara otomatis
         function copyText(button) {
             const textToCopy = button.parentElement.querySelector('p').innerText;
             navigator.clipboard.writeText(textToCopy).then(() => {
@@ -105,7 +104,6 @@
             });
         }
 
-        // Fungsi Filter Pencarian Data (Real-time Search)
         document.getElementById('searchBar').addEventListener('input', function(e) {
             const keyword = e.target.value.toLowerCase();
             const rows = document.querySelectorAll('#dataTable tr');
