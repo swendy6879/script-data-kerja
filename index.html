@@ -86,6 +86,24 @@
             box-sizing: border-box;
             resize: vertical;
         }
+        .category-add-box {
+            display: flex;
+            gap: 8px;
+            margin-top: 5px;
+        }
+        .btn-add-cat {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 0 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .btn-add-cat:hover {
+            background-color: #004085;
+        }
         .btn-submit {
             background-color: #385723;
             color: white;
@@ -173,27 +191,39 @@
 <div class="container">
     <h1>ARTI PERMAINAN ELOTTERY<br><small style="font-size: 0.6em; color: #666;">Isi Form</small></h1>
     
-    <!-- FITUR UNTUK MENAMBAHKAN KATA-KATA BARU -->
+    <!-- FITUR INPUT DATA KERJA BARU -->
     <div class="add-data-wrapper">
         <span class="add-data-title">➕ Tambah Data Kerja Baru</span>
+        
+        <!-- Input Khusus Tambah Kategori Baru -->
+        <div class="form-group" style="background: rgba(0,0,0,0.05); padding: 10px; border-radius: 4px; margin-bottom: 15px;">
+            <label style="color: #2b441b;">Buat Pilihan Kategori Baru:</label>
+            <div class="category-add-box">
+                <input type="text" id="customCategoryInput" class="input-text" placeholder="Contoh: Info Bonus New Member">
+                <button type="button" class="btn-add-cat" onclick="addNewCategory()">Tambah</button>
+            </div>
+        </div>
+
         <form id="dataForm" onsubmit="saveNewData(event)">
             <div class="form-group">
                 <label>Judul Bagian / Seksi:</label>
-                <input type="text" id="newTitle" class="input-text" placeholder="Contoh: INFO BONUS NEW MEMBER" required>
+                <input type="text" id="newTitle" class="input-text" placeholder="Contoh: CARA KLAIM SEKAT BARU" required>
             </div>
             <div class="form-group">
                 <label>Pilihan Kategori:</label>
                 <select id="newCategory" class="input-text" required>
+                    <!-- Kategori bawaan asli -->
                     <option value="form">Isi Form / Info Umum</option>
                     <option value="qris">Panduan QRIS</option>
                     <option value="scatter">Event Scatter</option>
+                    <!-- Kategori buatan user akan muncul di sini secara otomatis -->
                 </select>
             </div>
             <div class="form-group">
                 <label>Isi Kata-Kata / Data Kerja:</label>
-                <textarea id="newContent" class="textarea-text" placeholder="Tuliskan petunjuk atau isi teks kerja secara lengkap di sini..." required></textarea>
+                <textarea id="newContent" class="textarea-text" placeholder="Tuliskan petunjuk teks secara lengkap..." required></textarea>
             </div>
-            <button type="submit" class="btn-submit">Simpan Data</button>
+            <button type="submit" class="btn-submit">Simpan Data Kerja</button>
         </form>
     </div>
 
@@ -204,17 +234,17 @@
             <option value="form">Isi Form / Info Umum</option>
             <option value="qris">Panduan QRIS</option>
             <option value="scatter">Event Scatter</option>
+            <!-- Kategori buatan user juga akan masuk ke sini untuk pencarian -->
         </select>
         <input type="text" id="searchInput" class="filter-control" placeholder="Cari kata kunci data kerja..." onkeyup="filterData()">
     </div>
 
     <div id="noResultsMessage" class="no-results">Data kerja tidak ditemukan. Coba kata kunci lain!</div>
 
-    <!-- TEMPAT DATA DINAMIS (DATA BARU AKAN MUNCUL DI SINI) -->
+    <!-- TEMPAT DATA DINAMIS -->
     <div id="dynamicDataContainer"></div>
 
     <!-- DATA ASLI / BAWAAN SCRIPT -->
-    
     <div class="data-block" data-category="form">
         <div class="section-title">Isi Form & Info Umum</div>
         <div class="content-box">
@@ -243,22 +273,3 @@
 
     <div class="data-block" data-category="qris">
         <div class="section-title">QRIS - Solusi Kendala</div>
-        <div class="content-box">
-            <p>Jika tidak muncul menu generate QR pada QRIS, Silahkan clear cache atau menghapus history browser anda demi kenyamanan dan kelancaran anda saat melakukan transaksi deposit QRIS, jika kendala masih terjadi, kami sarankan anda untuk coba gunakan browser lain atau deposit ke tujuan bank yang sedang normal ya bosku</p>
-            <p>Terima kasih</p>
-        </div>
-    </div>
-
-    <div class="data-block" data-category="scatter">
-        <div class="section-title">SCATTER - Panduan Claim Event</div>
-        <div class="content-box">
-            <p>Untuk perihal Claim scatter pada EVENT SCATTER MAHJONG WAYS 1 & 2 pada Provider PGSoft minimal dengan Betting Rp 1,600 ya bosku</p>
-            
-            <div class="form-section">
-                <p><strong>Silahkan lengkapi Syarat untuk Klaim Bonus Scatter:</strong></p>
-                <p>User ID : <br>Kode Tiket : </p>
-            </div>
-
-            <p><strong>Dibantu dengan Lampiran Screenshot yang di perlukan sebagai berikut:</strong></p>
-            <ul>
-                
